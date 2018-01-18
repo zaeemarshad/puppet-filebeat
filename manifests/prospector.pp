@@ -16,7 +16,7 @@ define filebeat::prospector (
   $fields_under_root     = false,
   $ignore_older          = undef,
   $close_older           = undef,
-  $doc_type              = 'log',
+  $doc_type              = undef,
   $scan_frequency        = '10s',
   $harvester_buffer_size = 16384,
   $tail_files            = false,
@@ -44,6 +44,10 @@ define filebeat::prospector (
   validate_hash($fields, $multiline, $json)
   validate_array($paths, $exclude_files, $include_lines, $exclude_lines, $tags)
   validate_bool($tail_files, $close_renamed, $close_removed, $close_eof, $clean_removed, $symlinks)
+
+  if $doc_type == undef and versioncmp($::filebeat_version, '6.0.0') < 0 {
+    $real_doc_type = 'log'
+  }
 
   $prospector_template = 'prospector.yml.erb'
 
