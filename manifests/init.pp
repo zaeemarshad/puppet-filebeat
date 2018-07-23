@@ -91,7 +91,7 @@ class filebeat (
   Hash    $setup                                                      = {},
   Array   $modules                                                    = [],
   Optional[Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl]] $proxy_address = undef, # lint:ignore:140chars
-  Stdlib::Absolutepath $filebeat_path                                 = $filebeat::params::filebeat_path,
+  String $filebeat_path                                 = $filebeat::params::filebeat_path,
   Optional[Hash] $xpack                                               = $filebeat::params::xpack,
   Boolean $http_enabled                                               = $filebeat::params::http_enabled,
   Integer $http_port                                                  = $filebeat::params::http_port,
