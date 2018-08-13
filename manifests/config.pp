@@ -30,6 +30,7 @@ class filebeat::config {
       'processors'        => $filebeat::processors,
       'setup'             => $filebeat::setup,
       'http_enabled'      => $filebeat::http_enabled,
+      'http_port'         => $filebeat::http_port,
     })
     # Add the 'xpack' section if supported (version >= 6.1.0)
     if versioncmp($filebeat::package_ensure, '6.1.0') >= 0 {
