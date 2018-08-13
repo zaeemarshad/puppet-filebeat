@@ -621,15 +621,3 @@ logging.files:
   keepfiles: <%= @filebeat_config['logging']['files']['keepfiles'] %>
   <%- end -%>
 <%- end -%>
-
-#================================ HTTP Endpoint ======================================
-# Each beat can expose internal metrics through a HTTP endpoint. For security
-# reasons the endpoint is disabled by default. This feature is currently experimental.
-# Stats can be access through http://localhost:5066/stats . For pretty JSON output
-# append ?pretty to the URL.
-
-<%- if @filebeat_config['http_enabled'] != nil -%>
-http.enabled: <%= @filebeat_config['http_enabled'] -%>
-http.host: <%= @filebeat_config['beat_name'] %>
-http.port: <%= @filebeat_config['http_port'] %>
-<%- end -%>
