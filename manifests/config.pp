@@ -36,6 +36,7 @@ class filebeat::config {
     # Add the 'xpack' section if supported (version >= 6.1.0)
     if versioncmp($filebeat::package_ensure, '6.1.0') >= 0 {
       $filebeat_config = deep_merge($filebeat_config_temp, {'xpack' => $filebeat::xpack})
+      notify{"Dumping config: ${filebeat_config}":}
     }
     else {
       $filebeat_config = $filebeat_config_temp
