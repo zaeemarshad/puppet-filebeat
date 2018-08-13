@@ -33,6 +33,8 @@ class filebeat::config {
       'http.port'         => $filebeat::http_port,
       'http.host'         => $filebeat::beat_name,
     })
+
+    notify{"${filebeat_config_temp['http.host']}":}
     # Add the 'xpack' section if supported (version >= 6.1.0)
     if versioncmp($filebeat::package_ensure, '6.1.0') >= 0 {
       $filebeat_config = deep_merge($filebeat_config_temp, {'xpack' => $filebeat::xpack})
